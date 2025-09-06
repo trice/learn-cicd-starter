@@ -45,7 +45,7 @@ func TestGetAPIKey(t *testing.T) {
 				t.Fatal("GetAPIKey() succeeded unexpectedly")
 			}
 			// TODO: update the condition below to compare got with tt.want.
-			if tt.want == got {
+			if tt.want != got {
 				t.Errorf("GetAPIKey() = %v, want %v", got, tt.want)
 			}
 		})
