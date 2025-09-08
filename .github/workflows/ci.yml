@@ -29,7 +29,7 @@ jobs:
       - name: Format Go
         run: test -z $(go fmt ./...)
 
-      - name: Run Staticcheck
-        uses: dominikh/staticcheck-action@v1
+      - uses: dominikh/staticcheck-action@v1
         with:
           version: "latest"
+          working-directory: .
