@@ -25,10 +25,10 @@ jobs:
       - name: Run Script
         run: ./scripts/buildprod.sh
 
-        env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
 
       - name: 'DB Migration'
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: ./scripts/migrateup.sh
 
       - id: 'auth'
