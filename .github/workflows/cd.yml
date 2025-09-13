@@ -16,8 +16,17 @@ jobs:
         with:
           go-version: "1.23.0"
 
+      - name: Install Goose
+        run: go install github.com/pressly/goose/v3/cmd/goose@latest
+
       - name: Run Script
         run: ./scripts/buildprod.sh
+
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+
+      - name: 'DB Migration'
+        run: ./scripts/migrateup.sh
 
       - id: 'auth'
         uses: 'google-github-actions/auth@v2'
@@ -35,3 +44,4 @@ jobs:
 
       - name: Deploy to Cloud Run
         run: gcloud run deploy notely --image us-central1-docker.pkg.dev/notely-471722/notely-ar-repo/notely:latest --region us-central1 --allow-unauthenticated --project notely-471722 --max-instances=4
+
